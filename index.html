@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Frames & Citations | SbArt&Designs Annex-Tadzewu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html, body { 
+            font-family: 'Poppins', sans-serif; 
+            min-height: 100vh; 
+            width: 100%; 
+            overflow-x: hidden; 
+            color: white; 
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 140, 66, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 80, 120, 0.08) 0%, transparent 60%),
+                linear-gradient(-45deg, #0a0e1a, #1a0f1a, #0f0a14, #1a0f0a, #0a0e1a);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 400% 400%;
+            animation: animateBG 15s ease infinite;
+            scroll-behavior: smooth;
+        }
+        
+        @keyframes animateBG { 
+            0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; } 
+            50% { background-position: 100% 100%, 0% 0%, 50% 50%, 100% 50%; } 
+            100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; } 
+        }
+        
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .orb-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ff6b9d 0%, transparent 70%);
+            top: -100px; right: -100px;
+            animation: floatOrb1 12s ease-in-out infinite;
+        }
+        
+        .orb-2 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, #fc913a 0%, transparent 70%);
+            bottom: -80px; left: -80px;
+            animation: floatOrb2 15s ease-in-out infinite;
+        }
+        
+        .orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #ff4e50 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: floatOrb3 18s ease-in-out infinite;
+        }
+        
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 80px) scale(1.1); }
+            66% { transform: translate(30px, -40px) scale(0.9); }
+        }
+        
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -60px) scale(1.2); }
+            66% { transform: translate(-40px, 30px) scale(0.85); }
+        }
+        
+        @keyframes floatOrb3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.15; }
+        }
+        
+        .glass-card { 
+            background: rgba(20, 20, 35, 0.6); 
+            backdrop-filter: blur(40px) saturate(180%); 
+            -webkit-backdrop-filter: blur(40px) saturate(180%); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 28px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 0.5px rgba(255, 255, 255, 0.05);
+            width: 100%; 
+            max-width: 420px; 
+            padding: 35px 28px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+            border-radius: 28px 28px 0 0;
+            pointer-events: none;
+        }
+        
+        .glass-card.wide { max-width: 680px; }
+        
+        .section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger-btn {
+            position: fixed;
+            top: 14px;
+            right: 16px;
+            z-index: 110;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-btn:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+        }
+        
+        .hamburger-btn span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 105;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.3s ease;
+            width: 220px;
+            text-align: center;
+        }
+        
+        .mobile-menu a:hover {
+            background: rgba(255,107,157,0.2);
+            border-color: rgba(255,107,157,0.4);
+            transform: scale(1.05);
+        }
+        
+        /* ===== HERO ===== */
+        .hero-logo {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+        }
+        
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 30px rgba(255,107,157,0.2);
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        }
+        
+        .hero-tagline {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.85;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ===== PROFILE PICTURE ===== */
+        .profile-pic-wrap {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 24px auto;
+            border-radius: 50%;
+            border: 3px solid rgba(255,107,157,0.4);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(252,145,58,0.1));
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,107,157,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-pic-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .profile-placeholder {
+            font-size: 4rem;
+            opacity: 0.5;
+        }
+        
+        /* ===== FRAMES GALLERY ===== */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3), 0 0 20px rgba(255,107,157,0.15);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-desc {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+            max-width: 500px;
+        }
+        
+        .category-label {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            padding: 8px 22px;
+            background: rgba(255,107,157,0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(255,107,157,0.2);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            color: #ff8fab;
+        }
+        
+        .frames-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .frame-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 14px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .frame-card:hover {
+            transform: scale(1.03) translateY(-4px);
+            background: rgba(255,107,157,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255,107,157,0.1);
+            border-color: rgba(255,107,157,0.3);
+        }
+        
+        .frame-card:hover .frame-upload-area img {
+            transform: scale(1.05);
+        }
+        
+        .frame-upload-area {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            position: relative;
+            border: 2px dashed rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .frame-upload-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+        
+        .upload-placeholder {
+            font-size: 2.5rem;
+            opacity: 0.4;
+        }
+        
+        .upload-hint {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            opacity: 0.5;
+            background: rgba(0,0,0,0.5);
+            padding: 3px 10px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+        
+        .frame-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+        
+        .frame-size {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        
+        .frame-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ff8fab;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,143,171,0.2);
+            margin-bottom: 4px;
+        }
+        
+        .frame-gold-note {
+            font-size: 0.72rem;
+            opacity: 0.75;
+            font-style: italic;
+            line-height: 1.3;
+            color: #fc913a;
+        }
+        
+        /* ===== DETAIL PAGE ===== */
+        .detail-page {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 140, 66, 0.15) 0%, transparent 50%),
+                linear-gradient(-45deg, #0a0e1a, #1a0f1a, #0f0a14, #1a0f0a, #0a0e1a);
+            background-size: 100% 100%, 100% 100%, 400% 400%;
+            animation: animateBG 15s ease infinite;
+            z-index: 200;
+            overflow-y: auto;
+            padding: 60px 20px 40px 20px;
+        }
+        
+        .detail-page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .detail-close {
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            z-index: 210;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .detail-close:hover {
+            background: rgba(255,107,157,0.2);
+            transform: scale(1.05);
+        }
+        
+        .detail-card {
+            background: rgba(20, 20, 35, 0.6); 
+            backdrop-filter: blur(40px) saturate(180%); 
+            -webkit-backdrop-filter: blur(40px) saturate(180%); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 28px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 0.5px rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+            border-radius: 28px 28px 0 0;
+            pointer-events: none;
+        }
+        
+        .detail-img-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detail-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            animation: livePhoto 3s ease-in-out infinite;
+        }
+        
+        @keyframes livePhoto {
+            0% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.03) translate(-1%, -1%); }
+            50% { transform: scale(1.05) translate(0, 0); }
+            75% { transform: scale(1.03) translate(1%, 1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        
+        .detail-placeholder {
+            font-size: 5rem;
+            opacity: 0.3;
+            animation: livePhoto 3s ease-in-out infinite;
+        }
+        
+        .detail-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .detail-size {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .detail-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ff8fab;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3), 0 0 15px rgba(255,143,171,0.2);
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .detail-gold-note {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            color: #fc913a;
+        }
+        
+        .detail-desc {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .detail-contact-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        
+        /* ===== CONTACT CARDS ===== */
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.15);
+            width: 100%;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+        
+        .contact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+        
+        .contact-card:active {
+            transform: scale(0.97);
+        }
+        
+        .contact-card svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .whatsapp-card {
+            background: linear-gradient(45deg, #00b894, #0a0e1a, #00b894, #0a0e1a);
+            background-size: 300% 300%;
+            animation: calcGradientShift 8.3s ease infinite;
+        }
+        
+        @keyframes calcGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .tiktok-card {
+            background: linear-gradient(45deg, #0a0e1a, #FE2C55, #25F4EE, #FE2C55, #0a0e1a);
+            background-size: 400% 400%;
+            animation: tiktokGradient 7.4s ease infinite;
+        }
+        
+        @keyframes tiktokGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .footer { 
+            margin-top: 30px; 
+            padding: 14px 0 5px 0; 
+            font-size: 0.85rem; 
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .footer-heart { 
+            color: #ff6b9d; 
+            animation: heartbeat 1.2s ease-in-out infinite; 
+            display: inline-block; 
+            filter: drop-shadow(0 0 4px rgba(255, 107, 157, 0.5));
+        }
+        
+        @keyframes heartbeat { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.25); } 
+        }
+        
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+            font-size: 1.5rem;
+            color: #ff8fab;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        @media (max-width: 480px) { 
+            .hero-title { font-size: 1.8rem; } 
+            .section-title { font-size: 1.5rem; }
+            .glass-card { padding: 28px 20px; border-radius: 24px; } 
+            .profile-pic-wrap { width: 130px; height: 130px; }
+            .mobile-menu a { font-size: 1.2rem; width: 200px; }
+            .detail-title { font-size: 1.4rem; }
+            .detail-price { font-size: 1.3rem; }
+            .detail-card { padding: 24px 18px; }
+        }
+        
+        @media (max-width: 360px) {
+            .glass-card { padding: 24px 16px; }
+            .frames-grid { gap: 10px; }
+            .profile-pic-wrap { width: 120px; height: 120px; }
+        }
+        
+        html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        button, .contact-card { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    </style>
+</head>
+<body>
+    <!-- ANIMATED ORBS -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- HAMBURGER MENU BUTTON -->
+    <div class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="toggleMenu()">Home</a>
+        <a href="#frames" onclick="toggleMenu()">Our Work</a>
+        <a href="#contact" onclick="toggleMenu()">Order Now</a>
+    </div>
+
+    <!-- HOME -->
+    <section id="home" class="section">
+        <div class="glass-card">
+            <div class="hero-logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="15" y="15" width="55" height="70" rx="4" fill="none" stroke="white" stroke-width="4" opacity="0.6"/>
+                    <rect x="30" y="25" width="55" height="70" rx="4" fill="none" stroke="white" stroke-width="4"/>
+                    <rect x="38" y="33" width="39" height="54" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+                </svg>
+            </div>
+            <h1 class="hero-title">FRAMES & CITATIONS</h1>
+            <p class="hero-subtitle">SbArt&Designs Annex-Tadzewu</p>
+            
+            <div class="profile-pic-wrap">
+                <img src="Frames.PNG" alt="Profile Picture">
+            </div>
+            
+            <p class="hero-tagline">
+                Premium picture frames, canvas mounts, citations, laminations, t-shirt printing & custom designs. 
+                We make your memories last forever 🖼️✨
+            </p>
+            <div class="scroll-hint">↓</div>
+        </div>
+    </section>
+
+    <!-- FRAMES GALLERY -->
+    <section id="frames" class="section">
+        <div class="glass-card wide">
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-desc">
+                Explore our handcrafted collection of frames, prints, and custom designs. 
+                Every piece is made with precision, passion, and attention to detail — 
+                turning your precious moments into timeless keepsakes.
+            </p>
+            
+            <!-- PICTURE FRAMES -->
+            <div class="category-label">📸 Picture Frames</div>
+            <div class="frames-grid">
+                <!-- 8x12 -->
+                <div class="frame-card" onclick="openDetail('Classic Frame', '8 × 12 inches', '₵55.00', 'Frame with golden edges: ₵60.00', 'Frames1.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames1.JPG" alt="Classic Frame 8x12">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">8 × 12 inches</div>
+                    <div class="frame-price">₵55.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵60.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Classic Frame', '8 × 12 inches', '₵55.00', 'Frame with golden edges: ₵60.00', 'Frames7.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames7.JPG" alt="Classic Frame 8x12">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">8 × 12 inches</div>
+                    <div class="frame-price">₵55.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵60.00</div>
+                </div>
+                
+                <!-- 12x16 -->
+                <div class="frame-card" onclick="openDetail('Classic Frame', '12 × 16 inches', '₵100.00', 'Frame with golden edges: ₵120.00', 'Citation.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Citation.JPG" alt="Citation Frame 12x16">
+                    </div>
+                    <div class="frame-name">Citation Frame</div>
+                    <div class="frame-size">12 × 16 inches</div>
+                    <div class="frame-price">₵100.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵120.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Classic Frame', '12 × 16 inches', '₵100.00', 'Frame with golden edges: ₵120.00', 'Frames.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames.JPG" alt="Classic Frame 12x16">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">12 × 16 inches</div>
+                    <div class="frame-price">₵100.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵120.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Classic Frame', '12 × 16 inches', '₵100.00', 'Frame with golden edges: ₵120.00', 'Frames5.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames5.JPG" alt="Classic Frame 12x16">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">12 × 16 inches</div>
+                    <div class="frame-price">₵100.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵120.00</div>
+                </div>
+                
+                <!-- 16x20 -->
+                <div class="frame-card" onclick="openDetail('Classic Frame', '16 × 20 inches', '₵170.00', 'Frame with golden edges: ₵200.00', 'Frames6.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames6.JPG" alt="Classic Frame 16x20">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">16 × 20 inches</div>
+                    <div class="frame-price">₵170.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵200.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Classic Frame', '16 × 20 inches', '₵170.00', 'Frame with golden edges: ₵200.00', 'Frames8.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames8.JPG" alt="Classic Frame 16x20">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">16 × 20 inches</div>
+                    <div class="frame-price">₵170.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵200.00</div>
+                </div>
+                
+                <!-- 16x24 -->
+                <div class="frame-card" onclick="openDetail('Classic Frame', '16 × 24 inches', '₵200.00', 'Frame with golden edges: ₵240.00', 'Frames3.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames3.JPG" alt="Classic Frame 16x24">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">16 × 24 inches</div>
+                    <div class="frame-price">₵200.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵240.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Classic Frame', '16 × 24 inches', '₵200.00', 'Frame with golden edges: ₵240.00', 'Frames4.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="Frames4.JPG" alt="Classic Frame 16x24">
+                    </div>
+                    <div class="frame-name">Classic Frame</div>
+                    <div class="frame-size">16 × 24 inches</div>
+                    <div class="frame-price">₵200.00</div>
+                    <div class="frame-gold-note">Frame with golden edges: ₵240.00</div>
+                </div>
+            </div>
+            
+            <!-- T-SHIRT PRINTING -->
+            <div class="category-label">👕 T-Shirt Printing</div>
+            <div class="frames-grid">
+                <div class="frame-card" onclick="openDetail('Printed T-Shirt', 'Size M', 'Contact us for pricing', '', '👕')">
+                    <div class="frame-upload-area">
+                        <span class="upload-placeholder">👕</span>
+                        <span class="upload-hint">Coming soon</span>
+                    </div>
+                    <div class="frame-name">Printed T-Shirt</div>
+                    <div class="frame-size">Size M</div>
+                    <div class="frame-price">Contact us for pricing</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Printed T-Shirt', 'Size L', 'Contact us for pricing', '', '👕')">
+                    <div class="frame-upload-area">
+                        <span class="upload-placeholder">👕</span>
+                        <span class="upload-hint">Coming soon</span>
+                    </div>
+                    <div class="frame-name">Printed T-Shirt</div>
+                    <div class="frame-size">Size L</div>
+                    <div class="frame-price">Contact us for pricing</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Printed T-Shirt', 'Size XL', 'Contact us for pricing', '', '👕')">
+                    <div class="frame-upload-area">
+                        <span class="upload-placeholder">👕</span>
+                        <span class="upload-hint">Coming soon</span>
+                    </div>
+                    <div class="frame-name">Printed T-Shirt</div>
+                    <div class="frame-size">Size XL</div>
+                    <div class="frame-price">Contact us for pricing</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Printed T-Shirt', 'Size 2XL', 'Contact us for pricing', '', '👕')">
+                    <div class="frame-upload-area">
+                        <span class="upload-placeholder">👕</span>
+                        <span class="upload-hint">Coming soon</span>
+                    </div>
+                    <div class="frame-name">Printed T-Shirt</div>
+                    <div class="frame-size">Size 2XL</div>
+                    <div class="frame-price">Contact us for pricing</div>
+                </div>
+            </div>
+            
+            <!-- CANVAS MOUNTS -->
+            <div class="category-label">🎨 Canvas Mounts</div>
+            <div class="frames-grid">
+                <div class="frame-card" onclick="openDetail('Canvas Mount', '12 × 18 inches', '₵130.00', '', 'IMG_7796.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="IMG_7796.JPG" alt="Canvas Mount 12x18">
+                    </div>
+                    <div class="frame-name">Canvas Mount</div>
+                    <div class="frame-size">12 × 18 inches</div>
+                    <div class="frame-price">₵130.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Canvas Mount', '16 × 24 inches', '₵180.00', '', 'IMG_7797.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="IMG_7797.JPG" alt="Canvas Mount 16x24">
+                    </div>
+                    <div class="frame-name">Canvas Mount</div>
+                    <div class="frame-size">16 × 24 inches</div>
+                    <div class="frame-price">₵180.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Canvas Mount', '20 × 30 inches', '₵250.00', '', 'IMG_7800.JPG')">
+                    <div class="frame-upload-area">
+                        <img src="IMG_7800.JPG" alt="Canvas Mount 20x30">
+                    </div>
+                    <div class="frame-name">Canvas Mount</div>
+                    <div class="frame-size">20 × 30 inches</div>
+                    <div class="frame-price">₵250.00</div>
+                </div>
+                
+                <div class="frame-card" onclick="openDetail('Canvas Mount', '24 × 36 inches', '₵320.00', '', 'IMG_7801.WEBP')">
+                    <div class="frame-upload-area">
+                        <img src="IMG_7801.WEBP" alt="Canvas Mount 24x36">
+                    </div>
+                    <div class="frame-name">Canvas Mount</div>
+                    <div class="frame-size">24 × 36 inches</div>
+                    <div class="frame-price">₵320.00</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 25px; font-size: 0.85rem; opacity: 0.8; position: relative; z-index: 1;">
+                💡 Custom sizes available on request. Contact us for bulk orders!
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+        <div class="glass-card">
+            <h2 class="section-title">Order Now</h2>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.9; position: relative; z-index: 1;">
+                Click any button below to chat with us on WhatsApp or follow us on TikTok!
+            </p>
+            
+            <div class="contact-grid">
+                <a href="https://wa.me/233241537956" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 024 153 7956
+                </a>
+                
+                <a href="https://wa.me/233536143040" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 0536143040
+                </a>
+                
+                <a href="https://www.tiktok.com/@sb_artanddesigns" target="_blank" rel="noopener noreferrer" class="contact-card tiktok-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.89 2.89 2.89 0 012.88-2.89c.2 0 .39.02.57.06V9.66a6.33 6.33 0 00-.57-.03A6.34 6.34 0 003 15.97a6.34 6.34 0 006.33 6.33 6.34 6.34 0 006.33-6.33V8.73a8.16 8.16 0 004.77 1.53V6.82a4.85 4.85 0 01-1-.13z"/></svg>
+                    TikTok: @sb_artanddesigns
+                </a>
+            </div>
+            
+            <div class="footer" style="margin-top: 25px;">
+                © 2026 — SbArt&Designs Annex-Tadzewu<br>
+                Built with passion <span class="footer-heart">❤️</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAIL PAGE OVERLAY -->
+    <div class="detail-page" id="detailPage">
+        <div class="detail-close" onclick="closeDetail()">←</div>
+        
+        <div class="detail-card">
+            <div class="detail-img-wrap" id="detailImgWrap">
+                <img src="" alt="" id="detailImage" style="display:none;">
+                <span class="detail-placeholder" id="detailPlaceholder">🖼️</span>
+            </div>
+            
+            <div class="detail-title" id="detailTitle">Frame Name</div>
+            <div class="detail-size" id="detailSize">Size</div>
+            <div class="detail-price" id="detailPrice">Price</div>
+            <div class="detail-gold-note" id="detailGoldNote"></div>
+            
+            <div class="detail-desc">
+                Love what you see? Tap below to order this exact piece via WhatsApp or follow us on TikTok for more creative designs!
+            </div>
+            
+            <div class="detail-contact-title">📞 Order This Piece</div>
+            
+            <div class="contact-grid" style="margin: 0 auto;">
+                <a href="https://wa.me/233241537956" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 024 153 7956
+                </a>
+                
+                <a href="https://wa.me/233536143040" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 0536143040
+                </a>
+                
+                <a href="https://www.tiktok.com/@sb_artanddesigns" target="_blank" rel="noopener noreferrer" class="contact-card tiktok-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.89 2.89 2.89 0 012.88-2.89c.2 0 .39.02.57.06V9.66a6.33 6.33 0 00-.57-.03A6.34 6.34 0 003 15.97a6.34 6.34 0 006.33 6.33 6.34 6.34 0 006.33-6.33V8.73a8.16 8.16 0 004.77 1.53V6.82a4.85 4.85 0 01-1-.13z"/></svg>
+                    TikTok: @sb_artanddesigns
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const btn = document.getElementById('hamburgerBtn');
+            const menu = document.getElementById('mobileMenu');
+            btn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+        
+        function openDetail(name, size, price, goldNote, imageFile) {
+            document.getElementById('detailTitle').textContent = name;
+            document.getElementById('detailSize').textContent = size;
+            document.getElementById('detailPrice').textContent = price;
+            document.getElementById('detailGoldNote').textContent = goldNote;
+            
+            const img = document.getElementById('detailImage');
+            const placeholder = document.getElementById('detailPlaceholder');
+            
+            if (imageFile.endsWith('.JPG') || imageFile.endsWith('.PNG') || imageFile.endsWith('.WEBP') || imageFile.endsWith('.jpg') || imageFile.endsWith('.png') || imageFile.endsWith('.webp')) {
+                img.src = imageFile;
+                img.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                placeholder.textContent = imageFile;
+                img.style.display = 'none';
+                placeholder.style.display = 'block';
+            }
+            
+            document.getElementById('detailPage').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeDetail() {
+            document.getElementById('detailPage').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>
