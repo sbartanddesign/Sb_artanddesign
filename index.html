@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Coming Soon | SbArt&Designs Annex-Tadzewu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body { 
+            font-family: 'Poppins', sans-serif; 
+            min-height: 100vh; 
+            width: 100%; 
+            overflow-x: hidden; 
+            color: white; 
+            background: #0a0e1a;
+            scroll-behavior: smooth;
+        }
+
+        /* Background matching the main site */
+        .bg-layer {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 140, 66, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 80, 120, 0.08) 0%, transparent 60%),
+                linear-gradient(-45deg, #0a0e1a, #1a0f1a, #0f0a14, #1a0f0a, #0a0e1a);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 400% 400%;
+            animation: animateBG 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes animateBG { 
+            0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; } 
+            50% { background-position: 100% 100%, 0% 0%, 50% 50%, 100% 50%; } 
+            100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; } 
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ff6b9d 0%, transparent 70%);
+            top: -100px; right: -100px;
+            animation: floatOrb1 12s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, #fc913a 0%, transparent 70%);
+            bottom: -80px; left: -80px;
+            animation: floatOrb2 15s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #ff4e50 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: floatOrb3 18s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 80px) scale(1.1); }
+            66% { transform: translate(30px, -40px) scale(0.9); }
+        }
+
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -60px) scale(1.2); }
+            66% { transform: translate(-40px, 30px) scale(0.85); }
+        }
+
+        @keyframes floatOrb3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.15; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 30px rgba(255,107,157,0.2);
+            letter-spacing: -0.5px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        .brand-sub {
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        .typewriter-box {
+            background: rgba(20, 20, 35, 0.6); 
+            backdrop-filter: blur(40px) saturate(180%); 
+            -webkit-backdrop-filter: blur(40px) saturate(180%); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 28px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 0.5px rgba(255, 255, 255, 0.05);
+            width: 100%;
+            padding: 35px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.7s forwards;
+        }
+
+        .typewriter-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+            border-radius: 28px 28px 0 0;
+            pointer-events: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(255, 107, 157, 0.15);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ff8fab;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.9s forwards;
+        }
+
+        .typewriter-text {
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.92);
+            min-height: 120px;
+            position: relative;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #ff8fab;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        .cursor.done {
+            animation: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .contact-section {
+            margin-top: 30px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.15);
+            width: 100%;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        .contact-card:active {
+            transform: scale(0.97);
+        }
+
+        .contact-card svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .whatsapp-card {
+            background: linear-gradient(45deg, #00b894, #0a0e1a, #00b894, #0a0e1a);
+            background-size: 300% 300%;
+            animation: calcGradientShift 8.3s ease infinite;
+        }
+
+        @keyframes calcGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .tiktok-card {
+            background: linear-gradient(45deg, #0a0e1a, #FE2C55, #25F4EE, #FE2C55, #0a0e1a);
+            background-size: 400% 400%;
+            animation: tiktokGradient 7.4s ease infinite;
+        }
+
+        @keyframes tiktokGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .footer { 
+            margin-top: 30px; 
+            padding: 14px 0 5px 0; 
+            font-size: 0.85rem; 
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.1s forwards;
+        }
+
+        .footer-heart { 
+            color: #ff6b9d; 
+            animation: heartbeat 1.2s ease-in-out infinite; 
+            display: inline-block; 
+            filter: drop-shadow(0 0 4px rgba(255, 107, 157, 0.5));
+        }
+
+        @keyframes heartbeat { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.25); } 
+        }
+
+        @media (max-width: 480px) { 
+            .brand-name { font-size: 1.4rem; } 
+            .typewriter-box { padding: 28px 20px; border-radius: 24px; }
+            .typewriter-text { font-size: 0.95rem; }
+            .logo { width: 70px; height: 70px; }
+        }
+
+        @media (max-width: 360px) {
+            .typewriter-box { padding: 24px 16px; }
+            .typewriter-text { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Layer -->
+    <div class="bg-layer"></div>
+
+    <!-- Animated Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="15" width="55" height="70" rx="4" fill="none" stroke="white" stroke-width="4" opacity="0.6"/>
+                <rect x="30" y="25" width="55" height="70" rx="4" fill="none" stroke="white" stroke-width="4"/>
+                <rect x="38" y="33" width="39" height="54" rx="2" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+            </svg>
+        </div>
+
+        <h1 class="brand-name">FRAMES & CITATIONS</h1>
+        <p class="brand-sub">SbArt&Designs Annex-Tadzewu</p>
+
+        <div class="typewriter-box">
+            <div class="status-badge">⏳ Temporarily Unavailable</div>
+
+            <div class="typewriter-text" id="typewriter">
+                <span id="typed-text"></span><span class="cursor" id="cursor">|</span>
+            </div>
+        </div>
+
+        <div class="contact-section" id="contactSection">
+            <div class="contact-title">📞 Reach Out to Us</div>
+            <div class="contact-grid">
+                <a href="https://wa.me/233241537956" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 024 153 7956
+                </a>
+
+                <a href="https://wa.me/233536143040" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp: 0536143040
+                </a>
+
+                <a href="https://www.tiktok.com/@sb_artanddesigns" target="_blank" rel="noopener noreferrer" class="contact-card tiktok-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.89 2.89 2.89 0 012.88-2.89c.2 0 .39.02.57.06V9.66a6.33 6.33 0 00-.57-.03A6.34 6.34 0 003 15.97a6.34 6.34 0 006.33 6.33 6.34 6.34 0 006.33-6.33V8.73a8.16 8.16 0 004.77 1.53V6.82a4.85 4.85 0 01-1-.13z"/></svg>
+                    TikTok: @sb_artanddesigns
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 — SbArt&Designs Annex-Tadzewu<br>
+            Built with passion <span class="footer-heart">❤️</span>
+        </div>
+    </div>
+
+    <script>
+        const message = `Hey there! 👋\n\nWe\'re currently working behind the scenes to bring you an even better experience. Our website is temporarily unavailable as we make some important updates and improvements.\n\nWe apologize for any inconvenience this may cause. Your patience means the world to us, and we can\'t wait to show you what\'s coming!\n\nIn the meantime, feel free to reach out to us directly through any of the channels below. We\'d love to hear from you and answer any questions you may have.\n\nThank you for your understanding. 🙏`;
+
+        const typedText = document.getElementById('typed-text');
+        const cursor = document.getElementById('cursor');
+        const contactSection = document.getElementById('contactSection');
+
+        let index = 0;
+        let isTyping = true;
+
+        function typeWriter() {
+            if (index < message.length) {
+                const char = message.charAt(index);
+
+                if (char === '\n') {
+                    typedText.innerHTML += '<br>';
+                } else {
+                    typedText.textContent += char;
+                }
+
+                index++;
+
+                // Variable typing speed for natural feel
+                let speed = 30;
+                if (char === '.' || char === '!' || char === '?') speed = 350;
+                else if (char === ',') speed = 150;
+                else if (char === ' ') speed = 40;
+
+                setTimeout(typeWriter, speed);
+            } else {
+                // Typing done — fade out cursor and show contacts
+                setTimeout(() => {
+                    cursor.classList.add('done');
+                    contactSection.classList.add('visible');
+                }, 800);
+            }
+        }
+
+        // Start typing after a brief delay
+        setTimeout(typeWriter, 1200);
+    </script>
+</body>
+</html>
